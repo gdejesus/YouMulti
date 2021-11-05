@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>YouMulti - Nosotros</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css" />
+    <link rel="stylesheet" href="style/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="style/jquery-ui.min.css" />
+
+    <link rel="stylesheet" href="style/custom.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div id="navContainer"></div>
+    <div class="container tl">
+        <h1 class="tc">Integrante</h1>
+        <div class="col-md-5" style="margin: auto;float: inherit;">
+            <div class="wrapper">
+                <div class="card">
+                    <img class="card-img-top"
+                        src="https://media-exp1.licdn.com/dms/image/C5103AQEnjKMDIDmWXw/profile-displayphoto-shrink_200_200/0/1517038265355?e=1641427200&v=beta&t=ELlzWRtESfRBbe4uZmkFEJbC8RI0HmRwjS8RiyuGlKY"
+                        alt="Ln img">
+                    <div class="card-body">
+                        <h5 class="card-title">Guillermo E. De Jesus J.</h5>
+                        <p class="card-text">Estudiante avanzado de Lic. en sistemas</p>
+                        <a href="https://www.linkedin.com/in/apu-gdejesus/" class="btn btn-primary">LinkedIn</a>
+                        <a href="https://github.com/gdejesus" class="btn btn-primary">Github</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.container -->
+
+    <script type="text/javascript " src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript " src="js/jquery-ui.min.js "></script>
+    <script type="text/javascript " src="js/bootstrap.min.js "></script>
+    <script type="text/javascript " src="js/underscore-min.js "></script>
+
+</body>
+
+</html>
+<script type="text/javascript ">
+    let url = "./includes/nav.html"
+    $.ajax({
+        crossOrigin: true,
+        url: url,
+        success: function (data) {
+            $("#navContainer").html(data);
+        }
+    });
+</script>

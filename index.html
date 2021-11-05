@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es-Ar">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>YouMulti</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css" />
+    <link rel="stylesheet" href="style/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="style/jquery-ui.min.css" />
+
+    <link rel="stylesheet" href="style/custom.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div id="navContainer"></div>
+    <div class="container tl">
+        <h1 class="tc" title="Ultimo contenido">Último contenido</h1>
+    </div>
+    <div class="container tl" id="music" title="Ultimas canciones"> </div>
+    <div class="container tl" id="movies" title="Ultimos peliculas"></div>
+    <div class="container tl" id="series" title="Ultimas series"></div>
+    </div>
+
+
+    <!-- /.container -->
+
+    <script type="text/javascript " src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript " src="js/jquery-ui.min.js "></script>
+    <script type="text/javascript " src="js/bootstrap.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.1/underscore-min.js"
+        integrity="sha512-ZuOjyqq409+q6uc49UiBF3fTeyRyP8Qs0Jf/7FxH5LfhqBMzrR5cwbpDA4BgzSo884w6q/+oNdIeHenOqhISGw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript " src="js/db.js "></script>
+    <script type="text/javascript " src="js/home/utils.js"></script>
+</body>
+
+</html>
+
+<script type="text/javascript ">
+    let url = "./includes/nav.html"
+    $.ajax({
+        crossOrigin: true,
+        url: url,
+        success: function (data) {
+            $("#navContainer").html(data);
+        }
+    });
+    funcs.appendTitleAndVideo("#music", "Música", multimedia.music.slice(0, 3), "music");
+    funcs.appendTitleAndVideo("#movies", "Películas", multimedia.movies.slice(0, 3), "multimedia");
+    funcs.appendTitleAndVideo("#series", "Series", multimedia.series.slice(0, 3), "multimedia");
+</script>

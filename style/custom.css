@@ -1,0 +1,121 @@
+body {
+    text-align: center;
+    background-image: url('../img/bg2.jpg');
+    background-size: contain;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.tc {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.tl {
+    text-align: left;
+    margin-top: 5px;
+}
+
+.wrapper {
+    margin: auto;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: rgba(48, 113, 169, 0.9);
+}
+
+.wrapperGray {
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: rgba(48, 113, 169, 0.5);
+}
+
+.wdefault {
+    width: 100px;
+}
+
+.mleft {
+    margin-left: 10px;
+}
+
+h1 {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 5px;
+    text-align: center;
+    color: white;
+    margin: auto;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    /*width: 50vw;*/
+}
+
+.customTempDiv {
+    margin: 40px auto 40px auto;
+    max-width: 400px;
+}
+
+#companyIcon1,
+#companyIcon2,
+#companyIcon3,
+#companyIcon4,
+#companyIcon5,
+#companyIcon6,
+#companyIcon7,
+#planeIcon1,
+#planeIcon2,
+#planeIcon3,
+#planeIcon4,
+#planeIcon5,
+#planeIcon6,
+#planeIcon7,
+#detailIcon {
+    display: inline-flex;
+}
+
+#planeIcon1,
+#planeIcon2,
+#planeIcon3,
+#planeIcon4,
+#planeIcon5,
+#planeIcon6,
+#planeIcon7 {
+    float: right;
+}
+
+.card {
+    width: 100%;
+    text-align: center;
+}
+
+.card-img-top {
+    display: inline;
+    border-radius: 15px;
+    border-color: aliceblue;
+}
+
+#carouselPhotos img {
+    margin: auto !important;
+}
+
+.flex {
+    display: flex;
+}
+
+.home-title {
+    background-image: linear-gradient(to bottom,#428bca 0,#2d6ca2 100%);
+    color:white;
+    opacity: 0.75;
+    border-radius: 20px;
+}
+.no-bullet{
+    list-style-type:none;
+}
+
+.home-legend{
+    background:black;color:white;margin:auto;padding:10px;
+    border-radius: 5px;
+}

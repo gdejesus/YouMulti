@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es-Ar">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>YouMulti - Peliculas/Series</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css" />
+    <link rel="stylesheet" href="style/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="style/jquery-ui.min.css" />
+    <link rel="stylesheet" href="style/custom.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div id="navContainer"></div>
+
+    <div class="container tc">
+        <h1 title="Peliculas y series">Peliculas y Series</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <input id="multimedia" class="form-control autocomplete" title="Titulo" placeholder="Título..." />
+                <input id="artist" class="form-control autocompleteArtist" title="Actor" placeholder="Actor..." />
+                <input class="form-control" data-date-format="dd/mm/yyyy" title="Fecha" id="datepicker">
+                <button type="submit" id="searchMultimedia" class="btn btn-primary" title="Buscar"><span
+                        class="glyphicon glyphicon-search"></span></button>
+                <button type="submit" id="clearMultimedia" class="btn btn-primary" title="Limpiar"><span
+                        class="fas fa-eraser"></span></button>
+            </div>
+
+            <div class="col-md-8">
+                <div class="wrapper">
+                    <div id="MultimediaInfo">
+                        <table class="table" title="Información de Peliculas y series">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Titulo</th>                                    
+                                    <th>Duracion</th>
+                                    <th>Genero</th>
+                                    <th>Fecha Estreno</th>
+                                    <th>Fecha Incorporación</th>
+                                    <th>Reproductor</th>
+                                </tr>
+                            </thead>
+                            <tbody id="multimBodyTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container tc" id="moreInfo">
+        <div class="row">
+            <div class="col-md-4">
+                <h1 title="Información de Artistas">Artista</h1>
+                <div class="wrapper">
+                    <div id="ArtistInfo">
+                        <table class="table" title="Información de Artistas">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Opción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ArtistBodyTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h1 id="multimediaDirOrCap" title="Información de Director">Peliculas por director</h1>
+                <div class="wrapper">
+                    <div id="DirectorInfo" title="Información de Director">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                </tr>
+                            </thead>
+                            <tbody id="DirectorBodyTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" id="rating">
+                <h1 title="Raing por cancion">Rating</h1>
+                <ul class="home-title" style="list-style-type:none;">
+                    <li><b>Juancito acosta:</b> Muy bueno</li>
+                    <li><b>Pepe:</b>Me gustó</li>
+                    <li><b>Raul:</b>Bueno</li>
+                    <li><b>Anonimo:</b>Me encantó</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="multimVideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="video-view">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Premios</h5>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyTable">
+                        </tbody>
+                    </table>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /.container -->
+
+        <script type="text/javascript " src="js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript " src="js/jquery-ui.min.js "></script>
+        <script type="text/javascript " src="js/bootstrap.min.js "></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.1/underscore-min.js"
+            integrity="sha512-ZuOjyqq409+q6uc49UiBF3fTeyRyP8Qs0Jf/7FxH5LfhqBMzrR5cwbpDA4BgzSo884w6q/+oNdIeHenOqhISGw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="text/javascript" src="js/b-datepicker.min.js"></script>
+        <script type="text/javascript " src="js/db.js "></script>
+        <script type="text/javascript " src="js/multimedia/utils.js "></script>
+
+</body>
+
+</html>
+
+<script type="text/javascript ">
+    $('#datepicker').datepicker("setDate", new Date());
+    let url = "./includes/nav.html";
+    $.ajax({
+        crossOrigin: true,
+        url: url,
+        success: function (data) {
+            $("#navContainer").html(data);
+        }
+    });
+    //Variables
+    let query = window.location.search.substring(1),
+        photos = multimedia.photos,
+        director = artist.directors,
+        movieSerie = multimedia.movies.concat(multimedia.series),
+        actorsMovieSerie = artist.actors;
+
+    $("#play").click(function () {
+        funcs.appendPlayer();
+    });
+    //Sort by multimedia titulo then fill autocomplete
+    $(".autocomplete").autocomplete({
+        source: _.pluck(_.sortBy(movieSerie, 'titulo'), 'titulo')
+    });
+    $(".autocompleteArtist").autocomplete({
+        source: _.pluck(_.sortBy(actorsMovieSerie, 'name'), 'name')
+    });
+    $("#searchMultimedia").click(function () {
+        funcs.searchMultimedia();
+    });
+
+    $("#clearMultimedia").click(function () {
+        funcs.clearForm();
+        funcs.searchMultimedia();
+        $("#moreInfo").css('visibility', 'hidden');
+    });
+
+    $(document).ready(function () {
+        var qs = funcs.parse_query_string(query);
+        $("#optWins").css('visibility', 'hidden');
+        $("#optSocial").css('visibility', 'hidden');
+        $("#moreInfo").css('visibility', 'hidden');
+        if (qs != null && !_.isUndefined(qs.multimedia)) {
+            $("#multimedia").val(qs.multimedia);
+            funcs.searchMultimedia();
+        }
+    });
+</script>
