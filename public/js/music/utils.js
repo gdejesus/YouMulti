@@ -91,7 +91,7 @@ const funcs = {
                 let row = "<tr>";
                 row += "<td>" + a.id + "</td>";
                 row += "<td>" + a.name + "</td>";
-                row += '<td><a href="http://localhost:8080/artist.html?artist=' + a.name + '&music=' + element.titulo + '" class="btn btn-primary" title="Ver ficha Artista"><i class="fas fa-search"></i> </a></td>'
+                row += '<td><a href="./artist.html?artist=' + a.name + '&music=' + element.titulo + '" class="btn btn-primary" title="Ver ficha Artista"><i class="fas fa-search"></i> </a></td>'
                 row += "</tr>";
                 $("#ArtistBodyTable").append(row);
             });

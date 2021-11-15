@@ -6,7 +6,7 @@ let funcs = {
         });
         tittle.appendTo($(id));
         _.each(datas, function (data) {
-            let url = "http://localhost:8080/" + pars + ".html?" + pars + "=" + data.titulo;
+            let url = "./" + pars + ".html?" + pars + "=" + data.titulo;
             let div = $('<div>', {
                     class: "col-md-4"
                 }),
