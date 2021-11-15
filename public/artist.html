@@ -247,12 +247,12 @@
         if (qs != null) {
             if (qs.multimedia) {
                 $("#return").css('visibility', 'visible');
-                $("#return-icon").attr("href", "http://localhost:8080/multimedia.html?multimedia=" + qs
+                $("#return-icon").attr("href", "./multimedia.html?multimedia=" + qs
                     .multimedia);
             }
             if (qs.music) {
                 $("#return").css('visibility', 'visible');
-                $("#return-icon").attr("href", "http://localhost:8080/music.html?music=" + qs.music);
+                $("#return-icon").attr("href", "./music.html?music=" + qs.music);
             }
             if (!_.isUndefined(qs.artist)) {
                 $("#artist").val(qs.artist);
