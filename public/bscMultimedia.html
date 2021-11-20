@@ -64,95 +64,7 @@
         </div>
     </div>
 
-    <div class="container tc" id="moreInfo">
-        <div class="row">
-            <div class="col-md-4">
-                <h1 title="Información de Artistas">Artista</h1>
-                <div class="wrapper">
-                    <div id="ArtistInfo">
-                        <table class="table" title="Información de Artistas">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Opción</th>
-                                </tr>
-                            </thead>
-                            <tbody id="ArtistBodyTable">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h1 id="multimediaDirOrCap" title="Información de Director">Peliculas por director</h1>
-                <div class="wrapper">
-                    <div id="DirectorInfo" title="Información de Director">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                </tr>
-                            </thead>
-                            <tbody id="DirectorBodyTable">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4" id="rating">
-                <h1 title="Raing por cancion">Rating</h1>
-                <ul class="home-title" style="list-style-type:none;">
-                    <li><b>Juancito acosta:</b> Muy bueno</li>
-                    <li><b>Pepe:</b>Me gustó</li>
-                    <li><b>Raul:</b>Bueno</li>
-                    <li><b>Anonimo:</b>Me encantó</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="multimVideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="video-view">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Premios</h5>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Fecha</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bodyTable">
-                        </tbody>
-                    </table>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    
 
         <!-- /.container -->
 
@@ -210,10 +122,7 @@
 
     $(document).ready(function () {
         funcs.initMultimedia(movieSerie);
-        var qs = funcs.parse_query_string(query);
-        $("#optWins").css('visibility', 'hidden');
-        $("#optSocial").css('visibility', 'hidden');
-        $("#moreInfo").css('visibility', 'hidden');
+        var qs = funcs.parse_query_string(query);        
         if (qs != null && !_.isUndefined(qs.multimedia)) {
             $("#multimedia").val(qs.multimedia);
             funcs.searchMultimedia();
