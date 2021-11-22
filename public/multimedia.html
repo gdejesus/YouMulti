@@ -29,14 +29,17 @@
 
     <div class="container tc">
         <h1 title="Peliculas y series">Peliculas y Series</h1>
+        <div id="return">
+            <a class="btn btn-primary" id="return-icon" title="Volver a buscador">Volver a buscador <span class="fas fa-undo"></span></a>
+        </div>
         <div class="row">
             <div class="col-md-4" style="display:none;">
                 <input id="multimedia" class="form-control autocomplete" title="Titulo" placeholder="Título..." />
                 <input id="artist" class="form-control autocompleteArtist" title="Actor" placeholder="Actor..." />
                 <input class="form-control" data-date-format="dd/mm/yyyy" title="Fecha" id="datepicker">
-                <button type="submit" id="searchMultimedia" class="btn btn-primary" title="Buscar"><span
+                <button type="submit" id="searchMultimedia" class="btn btn-primary" title="Buscar">Buscar <span
                         class="glyphicon glyphicon-search"></span></button>
-                <button type="submit" id="clearMultimedia" class="btn btn-primary" title="Limpiar"><span
+                <button type="submit" id="clearMultimedia" class="btn btn-primary" title="Limpiar">Limpiar <span
                         class="fas fa-eraser"></span></button>
             </div>
 
@@ -52,6 +55,7 @@
                                     <th>Genero</th>
                                     <th>Fecha Estreno</th>
                                     <th>Fecha Incorporación</th>
+                                    <th>Director</th>
                                     <th>Reproductor</th>
                                 </tr>
                             </thead>
@@ -75,7 +79,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Opción</th>
+                                    <th>Detalle</th>
                                 </tr>
                             </thead>
                             <tbody id="ArtistBodyTable">
@@ -93,6 +97,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
+                                    <th>Reproductor</th>
                                 </tr>
                             </thead>
                             <tbody id="DirectorBodyTable">
@@ -114,7 +119,7 @@
     </div>
 
 
-    <div class="modal fade" id="multimVideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="multimVideo" tabindex="-1" role="dialog" aria-labelledby="multimVideoLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -127,7 +132,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -209,12 +214,15 @@
     });
 
     $(document).ready(function () {
-        funcs.initMultimedia(movieSerie);
         var qs = funcs.parse_query_string(query);
         $("#optWins").css('visibility', 'hidden');
         $("#optSocial").css('visibility', 'hidden');
         $("#moreInfo").css('visibility', 'hidden');
+        $("#return").css('visibility', 'hidden');
+
         if (qs != null && !_.isUndefined(qs.multimedia)) {
+            $("#return").css('visibility', 'visible');
+            $("#return-icon").attr("href", "./bscMultimedia.html");
             $("#multimedia").val(qs.multimedia);
             funcs.searchMultimedia();
         }

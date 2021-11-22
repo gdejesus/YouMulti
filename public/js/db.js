@@ -44,15 +44,53 @@ let multimedia = {
                 tipo:"pelicula",
                 tipoArtista: "actors",
                 ytubeId: "_Clcf3B7rh0"
-            }
+            },
+            {
+                id: 5,
+                titulo: 'Apocalypse Now 2',
+                clasificación: "R",
+                duracion: "181 minutos",
+                genero: "Drama Bélico Suspenso Misterio",
+                fechaEstreno: "16 de agosto de 1979",fechaIncorporación: "2 de noviembre de 2021",
+                director: 1,
+                tipo:"pelicula",
+                tipoArtista: "actors",
+                ytubeId: "_Clcf3B7rh0"
+            },
+            {
+                id: 6,
+                titulo: 'Karate kid 1',
+                clasificación: "-",
+                duracion: "149 minutos",
+                genero: "Acción Artes marciales",
+                fechaEstreno: "2 de mayo de 1889",
+                fechaIncorporación: "2 de mayo de 2018",
+                director: 3,
+                tipo:"pelicula",
+                tipoArtista: "actors",
+                ytubeId: "_rB36UGoP4Y"
+            },
         ],
         series: [{
-                id: 5,
-                titulo: 'Cobra Kai',
+                id: 55,
+                titulo: 'Cobra Kai tmp 1',
                 clasificación: "-",
                 duracion: "22-36 minutos",
                 genero: "Acción Artes marciales",
                 fechaEstreno: "2 de mayo de 2018",
+                fechaIncorporación: "2 de mayo de 2018",
+                director: 3,
+                tipo:"serie",
+                tipoArtista: "actors",
+                ytubeId: "_rB36UGoP4Y"
+            },
+            {
+                id: 56,
+                titulo: 'Cobra Kai tmp 2',
+                clasificación: "-",
+                duracion: "22-36 minutos",
+                genero: "Acción Artes marciales",
+                fechaEstreno: "2 de abril de 2019",
                 fechaIncorporación: "2 de noviembre de 2021",
                 director: 3,
                 tipo:"serie",
@@ -60,7 +98,33 @@ let multimedia = {
                 ytubeId: "_rB36UGoP4Y"
             },
             {
-                id: 6,
+                id: 57,
+                titulo: 'Cobra Kai tmp 3',
+                clasificación: "-",
+                duracion: "22-36 minutos",
+                genero: "Acción Artes marciales",
+                fechaEstreno: "2 de mayo de 2020",
+                fechaIncorporación: "2 de noviembre de 2020",
+                director: 3,
+                tipo:"serie",
+                tipoArtista: "actors",
+                ytubeId: "_rB36UGoP4Y"
+            },
+            {
+                id: 58,
+                titulo: 'Cobra Kai tmp 4',
+                clasificación: "-",
+                duracion: "22-36 minutos",
+                genero: "Acción Artes marciales",
+                fechaEstreno: "2 de mayo de 2021",
+                fechaIncorporación: "2 de noviembre de 2021",
+                director: 3,
+                tipo:"serie",
+                tipoArtista: "actors",
+                ytubeId: "_rB36UGoP4Y"
+            },
+            {
+                id: 59,
                 titulo: 'Jaguar',
                 clasificación: "-",
                 duracion: "-",
@@ -72,7 +136,7 @@ let multimedia = {
                 ytubeId: "y5tQYDTg_j0"
             },
             {
-                id: 7,
+                id: 60,
                 titulo: 'Sombras y Huesos',
                 clasificación: "-",
                 duracion: "-",
@@ -84,8 +148,32 @@ let multimedia = {
                 ytubeId: "pYNRJvWcK2A"
             },
             {
-                id: 8,
-                titulo: 'test',
+                id: 61,
+                titulo: 'Serie 1',
+                clasificación: "-",
+                duracion: "-",
+                genero: "Antigua",
+                fechaEstreno: "20 de septiembre de 2021",fechaIncorporación: "2 de noviembre de 2021",
+                director: 3,
+                tipo:"serie",
+                tipoArtista: "actors",
+                ytubeId: "y5tQYDTg_j0"
+            },
+            {
+                id:62,
+                titulo: 'Serie 2',
+                clasificación: "-",
+                duracion: "-",
+                genero: "Antigua",
+                fechaEstreno: "21 de septiembre de 2021",fechaIncorporación: "2 de noviembre de 2021",
+                director: 3,
+                tipo:"serie",
+                tipoArtista: "actors",
+                ytubeId: "y5tQYDTg_j0"
+            },
+            {
+                id: 63,
+                titulo: 'Serie 3',
                 clasificación: "-",
                 duracion: "-",
                 genero: "Antigua",
@@ -96,12 +184,12 @@ let multimedia = {
                 ytubeId: "y5tQYDTg_j0"
             },
             {
-                id: 9,
-                titulo: 'test2',
+                id: 64,
+                titulo: 'Serie 4',
                 clasificación: "-",
                 duracion: "-",
                 genero: "Antigua",
-                fechaEstreno: "22 de septiembre de 2021",fechaIncorporación: "2 de noviembre de 2021",
+                fechaEstreno: "23 de septiembre de 2021",fechaIncorporación: "2 de noviembre de 2021",
                 director: 3,
                 tipo:"serie",
                 tipoArtista: "actors",
@@ -295,7 +383,7 @@ let multimedia = {
                 pais: "Estados Unidos",
                 residencia: "Estados Unidos",
                 fechaNacimiento: "3 de agosto de 1940 (81 años)",
-                multimedia: [4],
+                multimedia: [4,60,61,62],
                 tipoArtista: "actors"
             },
             {
@@ -304,7 +392,7 @@ let multimedia = {
                 pais: "Estados Unidos",
                 residencia: "-",
                 fechaNacimiento: "03 de abril de 1924",
-                multimedia: [1, 4],
+                multimedia: [1, 4,57],
                 tipoArtista: "actors"
 
             },
@@ -314,7 +402,7 @@ let multimedia = {
                 pais: "Estados Unidos",
                 residencia: "Estados Unidos",
                 fechaNacimiento: "25 de abril de 1940 (81 años)",
-                multimedia: [1,2,4,1],
+                multimedia: [1,2,4,1,61],
                 tipoArtista: "actors"
 
             },
@@ -324,7 +412,7 @@ let multimedia = {
                 pais: "Estados Unidos",
                 residencia: "Estados Unidos",
                 fechaNacimiento: "5 de enero de 1931 (90 años)",
-                multimedia: [1, 2, 3],
+                multimedia: [1, 2, 3,62],
                 tipoArtista: "actors"
 
             },
@@ -334,7 +422,7 @@ let multimedia = {
                 pais: "Estados Unidos",
                 residencia: "Malibu",
                 fechaNacimiento: "12 de mayo de 1962 (59 años)",
-                multimedia: [4],
+                multimedia: [4,64,63],
                 tipoArtista:"actors"
             },
             {
@@ -343,7 +431,7 @@ let multimedia = {
                 pais: "Estados Unidos",
                 residencia: "Malibu",
                 fechaNacimiento: "12 de mayo de 1972",
-                multimedia: [5],
+                multimedia: [6,55,56,57,58],
                 tipoArtista:"actors"
             }
         ],
@@ -361,13 +449,13 @@ let multimedia = {
                     return m.director == 2;
                 })
             },
-            /*{
+            {
                 id: 3,
                 nombre: "Jon Hurwitz",
-                pelicula: _.filter(multimedia, function (m) {
+                pelicula: _.filter(multimedia.movies.concat(multimedia.series), function (m) {
                     return m.director == 3;
                 })
-            },*/
+            },
             {
                 id: 4,
                 nombre: "Carlos Sedes",
@@ -383,10 +471,10 @@ let multimedia = {
                 })
             },
             {
-                id: 3,
+                id: 6,
                 nombre: "test",
                 pelicula: _.filter(multimedia.movies.concat(multimedia.series), function (m) {
-                    return m.director == 3;
+                    return m.director == 6;
                 })
             },
         ],

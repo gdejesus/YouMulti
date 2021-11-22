@@ -82,7 +82,7 @@ const funcs = {
             row += "<td>" + element.genero + "</td>";
             row += "<td>" + element.fechaEstreno + "</td>";
             row += "<td>" + element.fechaIncorporación + "</td>";
-            row += '<td><button type="button" name="popup" id="' + element.id + '--' + element.tipoArtista + '" class="btn btn-primary" title="Reproducir" data-toggle="modal" data-target="#multimVideo" title="Multimedia"><i class="fas fa-play"></i> </button></td>'
+            row += '<td><button type="button" name="popup" id="' + element.id + '--' + element.tipoArtista + '" class="btn btn-primary" title="Reproducir" data-toggle="modal" data-target="#multimVideo" title="Multimedia">Reproducir <i class="fas fa-play"></i> </button></td>'
             row += "</tr>";
             $("#musicBodyTable").append(row);
             //Adding artist
@@ -91,7 +91,7 @@ const funcs = {
                 let row = "<tr>";
                 row += "<td>" + a.id + "</td>";
                 row += "<td>" + a.name + "</td>";
-                row += '<td><a href="./artist.html?artist=' + a.name + '&music=' + element.titulo + '" class="btn btn-primary" title="Ver ficha Artista"><i class="fas fa-search"></i> </a></td>'
+                row += '<td><a href="./artist.html?artist=' + a.name + '&music=' + element.titulo + '" class="btn btn-primary" title="Ver ficha Artista">Ficha artista <i class="fas fa-address-card"></i></a></td>'
                 row += "</tr>";
                 $("#ArtistBodyTable").append(row);
             });
@@ -101,7 +101,7 @@ const funcs = {
                 let row = "<tr>";
                 row += "<td>" + m.id + "</td>";
                 row += "<td>" + m.titulo + "</td>";
-                row += '<td><button type="button" name="popup" id="' + m.id + '--' + element.tipoArtista + '--false" class="btn btn-primary" title="Reproducir" data-toggle="modal" data-target="#multimVideo" title="Multimedia"><i class="fas fa-play"></i> </button></td>'
+                row += '<td><button type="button" name="popup" id="' + m.id + '--' + element.tipoArtista + '--false" class="btn btn-primary" title="Reproducir" data-toggle="modal" data-target="#multimVideo" title="Multimedia">Reproducir <i class="fas fa-play"></i> </button></td>'
                 row += "</tr>";
                 $("#MovieBodyTable").append(row);
             });
@@ -110,6 +110,11 @@ const funcs = {
             let artistPhotos = _.filter(photos, function (ap) {
                 return element.artista == ap.artist && ap.tipoArtista == element.tipoArtista;
             });
+            if(!artistPhotos.length){
+                $("#artistPhotos").css('visibility', 'hidden');
+                return;
+            }
+            $("#artistPhotos").css('visibility', 'visible');
             //Adding photos to slice
             _.each(artistPhotos, function (ap, i) {
                 let li = $("<li />", {

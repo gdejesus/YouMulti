@@ -30,18 +30,24 @@
     <div class="container tc">
         <h1 title="Buscador de artistas">Artistas</h1>
         <div id="return">
-            <a class="btn btn-primary" id="return-icon" title="return">Volver</a>
+            <a class="btn btn-primary" id="return-icon" title="Volver">Volver</a>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <input id="artist" title="Artista" class="form-control autocomplete" placeholder="Artistas..." />
-                <button type="submit" id="searchArtist" class="btn btn-primary" title="Detalle"><span
+                <button type="submit" id="searchArtist" class="btn btn-primary" title="Detalle">Buscar <span
                         class="glyphicon glyphicon-search"></span></button>
-                <button type="submit" id="clearMultimedia" class="btn btn-primary" title="Limpiar"><span
+                <button type="submit" id="clearMultimedia" class="btn btn-primary" title="Limpiar">Limpiar <span
                         class="fas fa-eraser"></span></button>
             </div>
-
-            <div class="col-md-8">
+            <div class="col-md-8" id="artistNotFound" style="display:none">
+                <div class="wrapper">
+                    <div id="ArtistInfo">
+                        <h1>Artista no encontrado</h1>
+                    </div>
+                    </div>
+                </div>
+            <div class="col-md-8" id="artistDetail" style="display:none">
                 <div class="wrapper">
                     <div id="ArtistInfo">
                         <table class="table" title="Información de artista">
@@ -67,19 +73,16 @@
                                     <th>Premios</th>
                                     <td id="trophy">
                                         <button type="submit" id="trophy" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#detailModal" title="Premios"><i
-                                                class="fas fa-trophy"></i></button>
+                                            data-target="#detailModal" title="Premios">Premios <i class="fas fa-trophy"></i> </button>
                                     </td>
                                 </tr>
                                 <tr id="optSocial">
                                     <th>Social</th>
                                     <td id="social">
-                                        <a class="btn btn-primary" href="https://www.facebook.com/" title="Facebook"><i
-                                                class="fab fa-facebook"></i> </a>
-                                        <a class="btn btn-primary" href="https://www.twitter.com/" title="Twitter"><i
-                                                class="fab fa-twitter"></i> </a>
-                                        <a class="btn btn-primary" href="https://www.instagram.com/"
-                                            title="Instagram"><i class="fab fa-instagram"></i> </a>
+                                        <button type="submit" id="social" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#socialModal" title="Redes sociales">Redes sociales <i class="fas fa-share-alt"></i></button>
+
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -90,7 +93,7 @@
         </div>
     </div>
 
-    <div class="container tc" id="moreInfo">
+    <div class="container tc" id="moreInfo" style="display:none">
         <div class="row">
             <div class="col-md-6">
                 <h1 title="Multimedia por artista">Multimedia</h1>
@@ -186,6 +189,37 @@
                 </div>
             </div>
         </div>
+        </div>
+
+        <div class="modal fade" id="socialModal" tabindex="-1" role="dialog" aria-labelledby="socialModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Redes Sociales</h5>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped" title="Redes sociales por actor">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Link</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyTable">
+                            <tr><td>Facebook</td><td><a class="btn btn-primary" href="https://www.facebook.com/" title="Facebook"><i class="fab fa-facebook"></i> </a></td></tr>
+                            <tr><td>Twitter</td><td><a class="btn btn-primary" href="https://www.twitter.com/" title="Twitter"><i class="fab fa-twitter"></i> </a></td></tr>
+                            <tr><td>Instagram</td><td><a class="btn btn-primary" href="https://www.instagram.com/" title="Instagram"><i class="fab fa-instagram"></i> </a></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
 
         <!-- /.container -->
 
@@ -234,24 +268,28 @@
 
     $("#clearMultimedia").click(function () {
         funcs.clearForm();
-        funcs.searchMusic(music);
     });
 
     $(document).ready(function () {
         var qs = funcs.parse_query_string(query);
-        $("#optWins").css('visibility', 'hidden');
+        /*$("#optWins").css('visibility', 'hidden');
         $("#optSocial").css('visibility', 'hidden');
         $("#moreInfo").css('visibility', 'hidden');
+        $("#artistNotFound").css('visibility', 'hidden');*/
         $("#return").css('visibility', 'hidden');
 
         if (qs != null) {
             if (qs.multimedia) {
                 $("#return").css('visibility', 'visible');
+                $("#return-icon").text("Volver a Bsc Peliculas/Serie ");
+                $("#return-icon").append($("<span />").addClass("fas fa-undo"));
                 $("#return-icon").attr("href", "./multimedia.html?multimedia=" + qs
                     .multimedia);
             }
             if (qs.music) {
                 $("#return").css('visibility', 'visible');
+                $("#return-icon").text("Volver a Bsc Musica ");
+                $("#return-icon").append($("<span />").addClass("fas fa-undo"));
                 $("#return-icon").attr("href", "./music.html?music=" + qs.music);
             }
             if (!_.isUndefined(qs.artist)) {

@@ -35,6 +35,12 @@ const funcs = {
         });
         return artst;
     },
+    getDirector: function (id) {
+        let artst = [];
+        return _.filter(artist.directors, function (a) {
+            return a.id == id
+        })[0].nombre;
+    },
     getMoviewsByDirectors: function (multimediaSelected) {
         let multim = funcs.getMultimedia(multimediaSelected, "actors");
         if(multim == null){
@@ -85,8 +91,9 @@ const funcs = {
         $("#moreInfo").css('visibility', 'visible');
         
         _.each(elements, function (element) {
-            $("#multimediaDirOrCap").text(element.tipo == "serie"?"Capitulos":"Peliculas por director");
-            let row = "<tr>";
+            let director = funcs.getDirector(element.director),
+            row = "<tr>";
+            $("#multimediaDirOrCap").text(element.tipo == "serie"?"Capitulos":"Peliculas de "+ director);
             row += "<td>" + element.id + "</td>";
             row += "<td>" + element.titulo + "</td>";
             //row += "<td>" + element.album + "</td>";
@@ -94,7 +101,8 @@ const funcs = {
             row += "<td>" + element.genero + "</td>";
             row += "<td>" + element.fechaEstreno + "</td>";
             row += "<td>" + element.fechaIncorporación + "</td>";
-            row += '<td><button type="button" name="popup" id="' + element.id + '--' + element.tipoArtista + '" class="btn btn-primary" title="Reproducir" data-toggle="modal" data-target="#multimVideo" title="Multimedia"><i class="fas fa-play"></i> </button></td>'
+            row += "<td>" + director + "</td>";
+            row += '<td><button type="button" name="popup" id="' + element.id + '--' + element.tipoArtista + '" class="btn btn-primary" title="Reproducir" data-toggle="modal" data-target="#multimVideo" title="Multimedia">Reproducir <i class="fas fa-play"></i> </button></td>'
             row += "</tr>";
             $("#multimBodyTable").append(row);
             //Adding artist
@@ -103,17 +111,16 @@ const funcs = {
                 let row = "<tr>";
                 row += "<td>" + a.id + "</td>";
                 row += "<td>" + a.name + "</td>";
-                row += '<td><a href="./artist.html?artist=' + a.name + '&multimedia=' + element.titulo + '" class="btn btn-primary" title="Ver ficha Artista"><i class="fas fa-search"></i> </a></td>'
-
+                row += '<td><a href="./artist.html?artist=' + a.name + '&multimedia=' + element.titulo + '" class="btn btn-primary" title="Ver ficha Artista">Ficha artista <i class="fas fa-address-card"></i></a></td>'
                 row += "</tr>";
                 $("#ArtistBodyTable").append(row);
             });
             let $mov = funcs.getMoviewsByDirectors(element.titulo);
-            _.each($mov, function (m) {
+            _.each($mov.slice(0,5), function (m) {
                 let row = "<tr>";
                 row += "<td>" + m.id + "</td>";
                 row += "<td>" + m.titulo + "</td>";
-                row += '<td><button type="button" name="popup" id="' + element.id + '--' + element.tipoArtista + '" class="btn btn-primary" title="Reproducir" data-toggle="modal" data-target="#multimVideo" title="Multimedia"><i class="fas fa-play"></i> </button></td>'
+                row += '<td><button type="button" name="popup" id="' + m.id + '--' + m.tipoArtista + '" class="btn btn-primary" title="Reproducir" data-toggle="modal" data-target="#multimVideo" title="Multimedia">Reproducir <i class="fas fa-play"></i></button></td>'
                 row += "</tr>";
                 $("#DirectorBodyTable").append(row);
             });
@@ -134,8 +141,6 @@ const funcs = {
         $("#ArtistBodyTable").html("");
         $("#multimBodyTable").html("");
         $("#DirectorBodyTable").html("");
-
-
     },
     clearForm:function(){
         $("#multimedia").val("");

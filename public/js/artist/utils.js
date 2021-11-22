@@ -65,12 +65,14 @@ const funcs = {
         let artistSelected = $("#artist").val();
         let element = funcs.getArtist(artistSelected, actors, musician, musicalGroups);
         if (element == null) {
+            $("#artistNotFound").css('display', 'block');
+            $("#artistDetail").css('display', 'none');
+            $("#moreInfo").css('display', 'none');
             return;
         }
-        $("#optWins").css('visibility', 'visible');
-        $("#optSocial").css('visibility', 'visible');
-
-        $("#moreInfo").css('visibility', 'visible');
+        $("#artistNotFound").css('display', 'none');
+        $("#artistDetail").css('display', 'block');
+        $("#moreInfo").css('display', 'block');
 
         $("#idArtist").text(element.id);
         $("#nameArtist").text(element.name);
@@ -114,7 +116,7 @@ const funcs = {
             row += "<td>" + md.id + "</td>";
             row += "<td>" + md.titulo + "</td>";
             row += "<td>" + md.fechaEstreno + "</td>";
-            row += '<td><button type="button" name="popup" id="' + md.id + '--'+element.tipoArtista+'" class="btn btn-primary" title="Reproducir" data-toggle="modal" data-target="#multimVideo" title="Multimedia"><i class="fas fa-play"></i> </button></td>'
+            row += '<td><button type="button" name="popup" id="' + md.id + '--'+element.tipoArtista+'" class="btn btn-primary" title="Reproducir" data-toggle="modal" data-target="#multimVideo" title="Multimedia">Reproducir <i class="fas fa-play"></i> </button></td>'
             row += "</tr>";
             $("#multimediaBodyTable").append(row);
         });
@@ -138,6 +140,10 @@ const funcs = {
     },
     clearForm:function(){
         $("#artist").val("");
+        $("#artistNotFound").css('display', 'none');
+        $("#artistDetail").css('display', 'none');
+        $("#moreInfo").css('display', 'none');
+        funcs.clearContent();
     },
     appendyTube: function (multi) {
         let src = "https://www.youtube.com/embed/" + multi.ytubeId,
