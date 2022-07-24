@@ -64,7 +64,7 @@ const funcs = {
             artistSelected;
         funcs.appendyTube(funcs.getMultimedia(filter, "actors"))
     },
-    searchMultimedia: function () { 
+    searchMultimedia: function (prevFrom) { 
         funcs.clearContent();
         let elements = [];
         let element = null;
@@ -111,7 +111,7 @@ const funcs = {
                 let row = "<tr>";
                 row += "<td>" + a.id + "</td>";
                 row += "<td>" + a.name + "</td>";
-                row += '<td><a href="./artist.html?artist=' + a.name + '&multimedia=' + element.titulo + '" class="btn btn-primary" title="Ver ficha Artista">Ficha artista <i class="fas fa-address-card"></i></a></td>'
+                row += '<td><a href="./artist.html?artist=' + a.name + '&multimedia=' + element.titulo + '&prevFrom='+prevFrom+'" class="btn btn-primary" title="Ver ficha Artista">Ficha artista <i class="fas fa-address-card"></i></a></td>'
                 row += "</tr>";
                 $("#ArtistBodyTable").append(row);
             });

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>YouMulti - Peliculas/Series</title>
+    <title>YouMulti - Buscador de Artista</title>
     <link rel="stylesheet" href="style/bootstrap.min.css" />
     <link rel="stylesheet" href="style/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="style/jquery-ui.min.css" />
@@ -36,37 +36,34 @@
     <div id="navContainer"></div>
 
     <div class="container tc">
-      <h1 title="Peliculas y series">Buscador Peliculas y Series</h1>
+      <h1 title="Buscador de Artista">Buscador de Artista</h1>
       <div id="return" style="display: none">
         <a class="btn btn-primary" id="return-icon" title="Volver a buscador"></a> Volver a buscador <span class="fas fa-undo"> </span></a>
     </div>
-      <div class="row wrapper" id="moviesSeriresSearcher">
+      <div class="row wrapper" id="artistSearcher">
         <div class="col-md-12" style="display:flex">
-          <input id="multimedia" class="form-control autocomplete" title="Titulo" placeholder="Título..." />
-          <input id="artist" class="form-control autocompleteArtist" title="Actor" placeholder="Actor..." />
-          <input class="form-control" data-date-format="dd/mm/yyyy" title="Fecha" id="datepicker" placeholder="fecha dd/mm/yyyy" />
-          <button type="submit" id="searchMultimedia" class="btn btn-primary" title="Buscar" >
+          <input id="artist" class="form-control autocompleteArtist" title="Artista" placeholder="Artista..." />
+          <button type="submit" id="searchArtist" class="btn btn-primary" title="Buscar" >
             Buscar <span class="glyphicon glyphicon-search"></span>
           </button>
-          <button type="submit" id="clearMultimedia" class="btn btn-primary" title="Limpiar">
+          <button type="submit" id="clearArtist" class="btn btn-primary" title="Limpiar">
             Limpiar <span class="fas fa-eraser"></span>
           </button>
         </div>
       </div>
 
-      <div class="row" id="moviesSeriresBody">
+      <div class="row" id="artistBody">
         <div class="col-md-12">
           <div class="wrapper">
-            <div id="MultimediaInfo">
-              <table class="table" title="Información de Peliculas y series">
+            <div id="artistInfo">
+              <table class="table" title="Información de Artista">
                 <thead>
                   <tr>
-                    <th>Titulo</th>
-                    <th>Fecha Estreno</th>
+                    <th>Nombre</th>
                     <th>Opción</th>
                   </tr>
                 </thead>
-                <tbody id="multimBodyTable"></tbody>
+                <tbody id="artistBodyTable"></tbody>
               </table>
             </div>
           </div>
@@ -86,7 +83,7 @@
     ></script>
     <script type="text/javascript" src="js/b-datepicker.min.js"></script>
     <script type="text/javascript " src="js/db.js "></script>
-    <script type="text/javascript " src="js/multimedia/bscUtils.js "></script>
+    <script type="text/javascript " src="js/artist/bscUtils.js "></script>
   </body>
 </html>
 
@@ -99,30 +96,32 @@
            $("#navContainer").html(data);
        }
    });
-   //Variables
    let query = window.location.search.substring(1),
-       photos = multimedia.photos,
-       director = artist.directors,
-       movieSerie = multimedia.movies.concat(multimedia.series),
-       actorsMovieSerie = artist.actors;
+        photos = multimedia.photos,
+        director = artist.directors,
+        winsTrophies = rewards.trophies,
+        actors = artist.actors,
+        musician = artist.musician,
+        musicalGroups = artist.musicalGroups,
+        availableArtist = artist.actors;
 
    $("#play").click(function () {
        funcs.appendPlayer();
    });
 
-   $("#searchMultimedia").click(function () {
-        $("#moviesSeriresBody").css('visibility', 'visible');
-        funcs.searchMultimedia();
+   $("#searchArtist").click(function () {
+        $("#artistBody").css('visibility', 'visible');
+        funcs.searchArtist();
    });
 
-   $("#clearMultimedia").click(function () {
+   $("#clearArtist").click(function () {
         funcs.clearForm();
-        $("#moviesSeriresBody").css('visibility', 'hidden');
+        $("#artistBody").css('visibility', 'hidden');
    });
 
 $(document).ready(function () {
-    $("#moviesSeriresSearcher").css('visibility', 'visible');
-    $("#moviesSeriresBody").css('visibility', 'hidden');
-    funcs.initMultimedia(movieSerie);
+    $("#artistSearcher").css('visibility', 'visible');
+    $("#artistBody").css('visibility', 'hidden');
+    //funcs.initArtist(actors, musician, musicalGroups);
 });
 </script>

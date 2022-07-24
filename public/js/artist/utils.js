@@ -23,16 +23,16 @@ const funcs = {
     getArtist: function (artistSelected, actors, musician, musicalGroups) {
         let element = {};
         element = _.filter(actors, function (a) {
-            return a.name == artistSelected
+            return a.name.toLowerCase().includes(artistSelected.toLowerCase());
         });
 
         if (element.length == 0) {
             element = _.filter(musician, function (a) {
-                return a.name == artistSelected
+                return a.name.toLowerCase().includes(artistSelected.toLowerCase());
             });
             if (element.length == 0) {
                 element = _.filter(musicalGroups, function (a) {
-                    return a.name == artistSelected
+                    return a.name.toLowerCase().includes(artistSelected.toLowerCase());
                 });
                 if (element.length == 0) {
                     return;

@@ -46,7 +46,7 @@ const funcs = {
         let multimediaSelected = $("#multimedia").val();
         funcs.appendyTube(funcs.getMultimedia(multimediaSelected))
     },
-    searchMusic: function () { //,availableArtist) {
+    searchMusic: function (music,prevFrom) { //,availableArtist) {
         funcs.clearContent();
         let elements = [];
         let multimediaTitle = $("#multimediaTitle").val();
@@ -58,7 +58,8 @@ const funcs = {
             elements = funcs.getMultimedia(multimediaGender, false);
         } else if (multimediaArtist != null && multimediaArtist != "") {
             let art = _.filter(artist.musician.concat(artist.musicalGroups), function (a) {
-                return a.name == multimediaArtist;
+                //return a.name == multimediaArtist;
+                return a.name.toLowerCase().includes(multimediaArtist.toLowerCase());
             });
             if (art.length) {
                 _.each(art[0].multimedia, function (mult) {
@@ -91,7 +92,7 @@ const funcs = {
                 let row = "<tr>";
                 row += "<td>" + a.id + "</td>";
                 row += "<td>" + a.name + "</td>";
-                row += '<td><a href="./artist.html?artist=' + a.name + '&music=' + element.titulo + '" class="btn btn-primary" title="Ver ficha Artista">Ficha artista <i class="fas fa-address-card"></i></a></td>'
+                row += '<td><a href="./artist.html?artist=' + a.name + '&music=' + element.titulo + '&prevFrom='+prevFrom+'" class="btn btn-primary" title="Ver ficha Artista">Ficha artista <i class="fas fa-address-card"></i></a></td>'
                 row += "</tr>";
                 $("#ArtistBodyTable").append(row);
             });

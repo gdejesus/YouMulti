@@ -37,10 +37,6 @@
                 <input id="multimedia" class="form-control autocomplete" title="Titulo" placeholder="Título..." />
                 <input id="artist" class="form-control autocompleteArtist" title="Actor" placeholder="Actor..." />
                 <input class="form-control" data-date-format="dd/mm/yyyy" title="Fecha" id="datepicker">
-                <button type="submit" id="searchMultimedia" class="btn btn-primary" title="Buscar">Buscar <span
-                        class="glyphicon glyphicon-search"></span></button>
-                <button type="submit" id="clearMultimedia" class="btn btn-primary" title="Limpiar">Limpiar <span
-                        class="fas fa-eraser"></span></button>
             </div>
 
             <div class="col-md-12">
@@ -176,8 +172,6 @@
 </html>
 
 <script type="text/javascript ">
-    //var thisDate = new Date();
-    //$('#datepicker').datepicker("setDate", thisDate);
     let url = "./includes/nav.html";
     $.ajax({
         crossOrigin: true,
@@ -196,22 +190,6 @@
     $("#play").click(function () {
         funcs.appendPlayer();
     });
-    //Sort by multimedia titulo then fill autocomplete
-    $(".autocomplete").autocomplete({
-        source: _.pluck(_.sortBy(movieSerie, 'titulo'), 'titulo')
-    });
-    $(".autocompleteArtist").autocomplete({
-        source: _.pluck(_.sortBy(actorsMovieSerie, 'name'), 'name')
-    });
-    $("#searchMultimedia").click(function () {
-        funcs.searchMultimedia();
-    });
-
-    $("#clearMultimedia").click(function () {
-        funcs.clearForm();
-        funcs.searchMultimedia();
-        $("#moreInfo").css('visibility', 'hidden');
-    });
 
     $(document).ready(function () {
         var qs = funcs.parse_query_string(query);
@@ -222,9 +200,23 @@
 
         if (qs != null && !_.isUndefined(qs.multimedia)) {
             $("#return").css('visibility', 'visible');
-            $("#return-icon").attr("href", "./bscMultimedia.html");
+            if(!_.isUndefined(qs.from)){
+                let goTo = "";
+                switch (qs.from) {
+                    case "index":
+                        goTo="Volver a Home";
+                        break;
+                    default:
+                        goTo="Volver a Buscador";
+                        break;
+                }
+                $("#return-icon").text(goTo);
+                $("#return-icon").attr("href", "./"+qs.from+".html");
+            }else{
+                $("#return-icon").attr("href", "./bscMultimedia.html");
+            }
             $("#multimedia").val(qs.multimedia);
-            funcs.searchMultimedia();
+            funcs.searchMultimedia(qs.from);
         }
     });
 </script>

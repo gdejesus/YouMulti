@@ -1,144 +1,193 @@
 <!DOCTYPE html>
 <html lang="es-Ar">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>YouMulti - Artista</title>
     <link rel="stylesheet" href="style/bootstrap.min.css" />
     <link rel="stylesheet" href="style/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="style/jquery-ui.min.css" />
     <link rel="stylesheet" href="style/custom.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <script
+        type="text/javascript"
+        src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"
+      ></script>
+      <script
+        type="text/javascript"
+        src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"
+      ></script>
     <![endif]-->
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div id="navContainer"></div>
 
     <div class="container tc">
-        <h1 title="Buscador de artistas">Artistas</h1>
-        <div id="return">
-            <a class="btn btn-primary" id="return-icon" title="Volver">Volver</a>
+      <h1 title="Buscador de artistas">Artistas</h1>
+      <div id="return">
+        <a class="btn btn-primary" id="return-icon" title="Volver">Volver</a>
+      </div>
+      <div class="row">
+        <div class="col-md-4" style="display: none">
+          <input
+            id="artist"
+            title="Artista"
+            class="form-control autocomplete"
+            placeholder="Artistas..."
+          />
+          <button
+            type="submit"
+            id="searchArtist"
+            class="btn btn-primary"
+            title="Detalle"
+          >
+            Buscar <span class="glyphicon glyphicon-search"></span>
+          </button>
+          <button
+            type="submit"
+            id="clearMultimedia"
+            class="btn btn-primary"
+            title="Limpiar"
+          >
+            Limpiar <span class="fas fa-eraser"></span>
+          </button>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <input id="artist" title="Artista" class="form-control autocomplete" placeholder="Artistas..." />
-                <button type="submit" id="searchArtist" class="btn btn-primary" title="Detalle">Buscar <span
-                        class="glyphicon glyphicon-search"></span></button>
-                <button type="submit" id="clearMultimedia" class="btn btn-primary" title="Limpiar">Limpiar <span
-                        class="fas fa-eraser"></span></button>
+        <div class="col-md-12" id="artistNotFound" style="display: none">
+          <div class="wrapper">
+            <div id="ArtistInfo">
+              <h1>Artista no encontrado</h1>
             </div>
-            <div class="col-md-8" id="artistNotFound" style="display:none">
-                <div class="wrapper">
-                    <div id="ArtistInfo">
-                        <h1>Artista no encontrado</h1>
-                    </div>
-                    </div>
-                </div>
-            <div class="col-md-8" id="artistDetail" style="display:none">
-                <div class="wrapper">
-                    <div id="ArtistInfo">
-                        <table class="table" title="Información de artista">
-                            <tbody>
-                                <tr>
-                                    <th>Id</th>
-                                    <td id="idArtist"></td>
-                                </tr>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <td id="nameArtist"></td>
-
-                                </tr>
-                                <tr>
-                                    <th>Residencia</th>
-                                    <td id="countryArtist"></td>
-                                </tr>
-                                <tr>
-                                    <th>Fecha nacimiento</th>
-                                    <td id="birthArtist"></td>
-                                </tr>
-                                <tr id="optWins">
-                                    <th>Premios</th>
-                                    <td id="trophy">
-                                        <button type="submit" id="trophy" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#detailModal" title="Premios">Premios <i class="fas fa-trophy"></i> </button>
-                                    </td>
-                                </tr>
-                                <tr id="optSocial">
-                                    <th>Social</th>
-                                    <td id="social">
-                                        <button type="submit" id="social" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#socialModal" title="Redes sociales">Redes sociales <i class="fas fa-share-alt"></i></button>
-
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="col-md-12" id="artistDetail" style="display: none">
+          <div class="wrapper">
+            <div id="ArtistInfo">
+              <table class="table" title="Información de artista">
+                <tbody>
+                  <tr>
+                    <th>Id</th>
+                    <td id="idArtist"></td>
+                  </tr>
+                  <tr>
+                    <th>Nombre</th>
+                    <td id="nameArtist"></td>
+                  </tr>
+                  <tr>
+                    <th>Residencia</th>
+                    <td id="countryArtist"></td>
+                  </tr>
+                  <tr>
+                    <th>Fecha nacimiento</th>
+                    <td id="birthArtist"></td>
+                  </tr>
+                  <tr id="optWins">
+                    <th>Premios</th>
+                    <td id="trophy">
+                      <button
+                        type="submit"
+                        id="trophy"
+                        class="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#detailModal"
+                        title="Premios"
+                      >
+                        Premios <i class="fas fa-trophy"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr id="optSocial">
+                    <th>Social</th>
+                    <td id="social">
+                      <button
+                        type="submit"
+                        id="social"
+                        class="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#socialModal"
+                        title="Redes sociales"
+                      >
+                        Redes sociales <i class="fas fa-share-alt"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="container tc" id="moreInfo" style="display:none">
-        <div class="row">
-            <div class="col-md-6">
-                <h1 title="Multimedia por artista">Multimedia</h1>
-                <div class="wrapper">
-                    <div id="MultimediaInfo">
-                        <table class="table" title="Multimedia por artista">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Titulo</th>
-                                    <th>Fecha estreno</th>
-                                    <th>Reproducir</th>
-                                </tr>
-                            </thead>
-                            <tbody id="multimediaBodyTable">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    <div class="container tc" id="moreInfo" style="display: none">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 title="Multimedia por artista">Multimedia</h1>
+          <div class="wrapper">
+            <div id="MultimediaInfo">
+              <table class="table" title="Multimedia por artista">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Titulo</th>
+                    <th>Fecha estreno</th>
+                    <th>Reproducir</th>
+                  </tr>
+                </thead>
+                <tbody id="multimediaBodyTable"></tbody>
+              </table>
             </div>
-            <div class="col-md-6">
-                <h1 title="Fotos por artista">Fotos</h1>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h1 title="Fotos por artista">Fotos</h1>
 
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators" id="carouselIndicators">
-                    </ol>
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators" id="carouselIndicators"></ol>
 
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner" id="carouselPhotos">
-                    </div>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" id="carouselPhotos"></div>
 
-                    <!-- Left and right controls -->
-                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" title="Anterior"></span>
-                        <span class="sr-only">previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" title="Siguiente"></span>
-                        <span class="sr-only">next</span>
-                    </a>
-                </div>
-            </div>
+            <!-- Left and right controls -->
+            <a
+              class="left carousel-control"
+              href="#myCarousel"
+              data-slide="prev"
+            >
+              <span
+                class="glyphicon glyphicon-chevron-left"
+                title="Anterior"
+              ></span>
+              <span class="sr-only">previous</span>
+            </a>
+            <a
+              class="right carousel-control"
+              href="#myCarousel"
+              data-slide="next"
+            >
+              <span
+                class="glyphicon glyphicon-chevron-right"
+                title="Siguiente"
+              ></span>
+              <span class="sr-only">next</span>
+            </a>
+          </div>
+        </div>
 
-            <!--<div class="col-md-4" id="rating">
+        <!--<div class="col-md-4" id="rating">
                 <h1 title="Raing por cancion">Rating</h1>
                 <ul class="home-title" style="list-style-type:none;">
                     <li><b>Juancito acosta:</b> Muy bueno</li>
@@ -147,155 +196,240 @@
                     <li><b>Anonimo:</b>Me encantó</li>
                 </ul>
             </div>-->
-        </div>
+      </div>
     </div>
 
-    <div class="modal fade" id="multimVideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="video-view">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
+    <div
+      class="modal fade"
+      id="multimVideo"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="video-view">
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Premios</h5>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-bordered table-striped" title="Premios por actor">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Fecha</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bodyTable">
-                        </tbody>
-                    </table>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
+    <div
+      class="modal fade"
+      id="detailModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Premios</h5>
+          </div>
+          <div class="modal-body">
+            <table
+              class="table table-bordered table-striped"
+              title="Premios por actor"
+            >
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody id="bodyTable"></tbody>
+            </table>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
             </div>
+          </div>
         </div>
-        </div>
+      </div>
+    </div>
 
-        <div class="modal fade" id="socialModal" tabindex="-1" role="dialog" aria-labelledby="socialModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Redes Sociales</h5>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-bordered table-striped" title="Redes sociales por actor">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Link</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bodyTable">
-                            <tr><td>Facebook</td><td><a class="btn btn-primary" href="https://www.facebook.com/" title="Facebook"><i class="fab fa-facebook"></i> </a></td></tr>
-                            <tr><td>Twitter</td><td><a class="btn btn-primary" href="https://www.twitter.com/" title="Twitter"><i class="fab fa-twitter"></i> </a></td></tr>
-                            <tr><td>Instagram</td><td><a class="btn btn-primary" href="https://www.instagram.com/" title="Instagram"><i class="fab fa-instagram"></i> </a></td></tr>
-                        </tbody>
-                    </table>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
+    <div
+      class="modal fade"
+      id="socialModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="socialModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Redes Sociales</h5>
+          </div>
+          <div class="modal-body">
+            <table
+              class="table table-bordered table-striped"
+              title="Redes sociales por actor"
+            >
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody id="bodyTable">
+                <tr>
+                  <td>Facebook</td>
+                  <td>
+                    <a
+                      class="btn btn-primary"
+                      href="https://www.facebook.com/"
+                      title="Facebook"
+                      ><i class="fab fa-facebook"></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Twitter</td>
+                  <td>
+                    <a
+                      class="btn btn-primary"
+                      href="https://www.twitter.com/"
+                      title="Twitter"
+                      ><i class="fab fa-twitter"></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Instagram</td>
+                  <td>
+                    <a
+                      class="btn btn-primary"
+                      href="https://www.instagram.com/"
+                      title="Instagram"
+                      ><i class="fab fa-instagram"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
             </div>
+          </div>
         </div>
-        </div>
+      </div>
+    </div>
 
+    <!-- /.container -->
 
-        <!-- /.container -->
-
-        <script type="text/javascript " src="js/jquery-1.10.2.min.js"></script>
-        <script type="text/javascript " src="js/jquery-ui.min.js "></script>
-        <script type="text/javascript " src="js/bootstrap.min.js "></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.1/underscore-min.js"
-            integrity="sha512-ZuOjyqq409+q6uc49UiBF3fTeyRyP8Qs0Jf/7FxH5LfhqBMzrR5cwbpDA4BgzSo884w6q/+oNdIeHenOqhISGw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script type="text/javascript " src="js/db.js "></script>
-        <script type="text/javascript " src="js/artist/utils.js "></script>
-
-</body>
-
+    <script type="text/javascript " src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript " src="js/jquery-ui.min.js "></script>
+    <script type="text/javascript " src="js/bootstrap.min.js "></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.1/underscore-min.js"
+      integrity="sha512-ZuOjyqq409+q6uc49UiBF3fTeyRyP8Qs0Jf/7FxH5LfhqBMzrR5cwbpDA4BgzSo884w6q/+oNdIeHenOqhISGw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script type="text/javascript " src="js/db.js "></script>
+    <script type="text/javascript " src="js/artist/utils.js "></script>
+  </body>
 </html>
 
 <script type="text/javascript ">
-    let url = "./includes/nav.html"
-    $.ajax({
-        crossOrigin: true,
-        url: url,
-        success: function (data) {
-            $("#navContainer").html(data);
+  let url = "./includes/nav.html"
+  $.ajax({
+      crossOrigin: true,
+      url: url,
+      success: function (data) {
+          $("#navContainer").html(data);
+      }
+  });
+  //Variables
+  let query = window.location.search.substring(1),
+      photos = multimedia.photos,
+      director = artist.directors,
+      winsTrophies = rewards.trophies,
+      actors = artist.actors,
+      musician = artist.musician,
+      musicalGroups = artist.musicalGroups,
+      availableArtist = artist.actors;
+
+  $("#trophy").click(function () {
+      funcs.appendTrophies(actors, musician, musicalGroups)
+  });
+
+  $("#searchArtist").click(function () {
+      funcs.searchArt(actors, musician, musicalGroups)
+  });
+
+  $("#clearMultimedia").click(function () {
+      funcs.clearForm();
+  });
+
+  $(document).ready(function () {
+      var qs = funcs.parse_query_string(query);
+      $("#return").css('visibility', 'hidden');
+
+      if (qs != null) {
+          $("#return").css('visibility', 'visible');
+        if (qs.multimedia) {
+            let prevFrom = "";
+            debugger;
+            if(!_.isUndefined(qs.prevFrom)){
+                prevFrom ="&from="+qs.prevFrom;
+            }
+            $("#return-icon").text("Volver a Bsc Peliculas/Serie ");
+            $("#return-icon").append($("<span />").addClass("fas fa-undo"));
+            $("#return-icon").attr("href", "./multimedia.html?multimedia=" + qs.multimedia + prevFrom);
         }
-    });
-    //Variables
-    let query = window.location.search.substring(1),
-        photos = multimedia.photos,
-        director = artist.directors,
-        winsTrophies = rewards.trophies,
-        actors = artist.actors,
-        musician = artist.musician,
-        musicalGroups = artist.musicalGroups,
-        availableArtist = artist.actors;
-
-    $("#trophy").click(function () {
-        funcs.appendTrophies(actors, musician, musicalGroups)
-    });
-    //Sort by Artist name then fill autocomplete
-    $(".autocomplete").autocomplete({
-        source: _.pluck(_.sortBy(actors.concat(musician).concat(musicalGroups), name), 'name')
-    });
-    $("#searchArtist").click(function () {
-        funcs.searchArt(actors, musician, musicalGroups)
-    });
-
-    $("#clearMultimedia").click(function () {
-        funcs.clearForm();
-    });
-
-    $(document).ready(function () {
-        var qs = funcs.parse_query_string(query);
-        /*$("#optWins").css('visibility', 'hidden');
-        $("#optSocial").css('visibility', 'hidden');
-        $("#moreInfo").css('visibility', 'hidden');
-        $("#artistNotFound").css('visibility', 'hidden');*/
-        $("#return").css('visibility', 'hidden');
-
-        if (qs != null) {
-            if (qs.multimedia) {
-                $("#return").css('visibility', 'visible');
-                $("#return-icon").text("Volver a Bsc Peliculas/Serie ");
-                $("#return-icon").append($("<span />").addClass("fas fa-undo"));
-                $("#return-icon").attr("href", "./multimedia.html?multimedia=" + qs
-                    .multimedia);
+        if (qs.music) {
+            let prevFrom = "";
+            if(!_.isUndefined(qs.prevFrom)){
+                prevFrom ="&from="+qs.prevFrom;
             }
-            if (qs.music) {
-                $("#return").css('visibility', 'visible');
-                $("#return-icon").text("Volver a Bsc Musica ");
-                $("#return-icon").append($("<span />").addClass("fas fa-undo"));
-                $("#return-icon").attr("href", "./music.html?music=" + qs.music);
-            }
-            if (!_.isUndefined(qs.artist)) {
-                $("#artist").val(qs.artist);
-                funcs.searchArt(actors, musician, musicalGroups);
-            }
+            $("#return-icon").text("Volver a Bsc Musica ");
+            $("#return-icon").append($("<span />").addClass("fas fa-undo"));
+            $("#return-icon").attr("href", "./music.html?music=" + qs.music + prevFrom);
         }
-    });
+
+        if(!_.isUndefined(qs.from)){
+            let goTo = "";
+            switch (qs.from) {
+                case "index":
+                    goTo="Volver a Home";
+                    break;
+                default:
+                    goTo="Volver a Buscador";
+                    break;
+            }
+            $("#return-icon").text(goTo);
+            $("#return-icon").attr("href", "./"+qs.from+".html");
+        }
+        if (!_.isUndefined(qs.artist)) {
+        $("#artist").val(qs.artist);
+        funcs.searchArt(actors, musician, musicalGroups);
+        }
+      }
+  });
 </script>

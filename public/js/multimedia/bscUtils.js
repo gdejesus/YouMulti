@@ -22,7 +22,7 @@ const funcs = {
     },
     
     initMultimedia:function(movieSerie){
-        if(_.isNull(movieSerie)){
+        if(_.isNull(movieSerie) || _.isEmpty(movieSerie)){
             movieSerie = multimedia.movies.concat(multimedia.series);
         }
         _.each(movieSerie,function(data){
@@ -51,19 +51,19 @@ const funcs = {
         });
     },
     searchMultimedia: function () { 
-        let elements = [];
-        let artistSelected = $("#artist").val();
-        let multimediaSelected = $("#multimedia").val();
-        let date = $('#datepicker').datepicker("getDate");
-        let shortDate = $("#datepicker").val();
-
+        let elements = [],
+         artistSelected = $("#artist").val(),
+         multimediaSelected = $("#multimedia").val(),
+         date = $('#datepicker').datepicker("getDate"),
+         shortDate = $("#datepicker").val();
+        
         let filter = (date != null && date != "" && date != new Date() ? shortDate : multimediaSelected != null && multimediaSelected != "" ? multimediaSelected :  "").toLowerCase();
         if(!_.isEmpty(filter)){
             funcs.filterTable(filter);
         }else if (artistSelected != null && artistSelected != "") {
             funcs.clearContent();
             let art = _.filter(artist.actors, function (a) {
-                return a.name == artistSelected;
+                return a.name.toLowerCase().includes(artistSelected.toLowerCase());
             });
             if (art.length) {
                 _.each(art[0].multimedia, function (mult) {
@@ -76,6 +76,9 @@ const funcs = {
                 return;
             }
             this.initMultimedia(elements);
+        }else{
+            let movieSerie = multimedia.movies.concat(multimedia.series);
+            this.initMultimedia(movieSerie);
         }
         $("[name=popup]").click(function () {
             var $this = $(this);
@@ -98,6 +101,7 @@ const funcs = {
     clearForm:function(){
         $("#multimedia").val("");
         $("#artist").val("");
+        $('#datepicker').val("");
         $("#moreInfo").css('visibility', 'hidden');
     }
     

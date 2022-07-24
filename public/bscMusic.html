@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>YouMulti - Peliculas/Series</title>
+    <title>YouMulti - Buscador de Música</title>
     <link rel="stylesheet" href="style/bootstrap.min.css" />
     <link rel="stylesheet" href="style/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="style/jquery-ui.min.css" />
@@ -36,29 +36,36 @@
     <div id="navContainer"></div>
 
     <div class="container tc">
-      <h1 title="Peliculas y series">Buscador Peliculas y Series</h1>
+      <h1 title="Buscador de música">Buscador Música</h1>
       <div id="return" style="display: none">
         <a class="btn btn-primary" id="return-icon" title="Volver a buscador"></a> Volver a buscador <span class="fas fa-undo"> </span></a>
     </div>
-      <div class="row wrapper" id="moviesSeriresSearcher">
+      <div class="row wrapper" id="musicSearcher">
         <div class="col-md-12" style="display:flex">
-          <input id="multimedia" class="form-control autocomplete" title="Titulo" placeholder="Título..." />
-          <input id="artist" class="form-control autocompleteArtist" title="Actor" placeholder="Actor..." />
-          <input class="form-control" data-date-format="dd/mm/yyyy" title="Fecha" id="datepicker" placeholder="fecha dd/mm/yyyy" />
-          <button type="submit" id="searchMultimedia" class="btn btn-primary" title="Buscar" >
+          <input id="music" class="form-control autocomplete" title="Titulo" placeholder="Título..." />
+          <input id="musicGender" class="form-control autocompleteArtist" title="Genero" placeholder="Genero..." />
+          <input id="musicArtist" class="form-control autocompleteArtist" title="Artista" placeholder="Artista..." />
+          
+          <button type="submit" id="searchMusic" class="btn btn-primary" title="Buscar" >
             Buscar <span class="glyphicon glyphicon-search"></span>
           </button>
-          <button type="submit" id="clearMultimedia" class="btn btn-primary" title="Limpiar">
+          <button type="submit" id="clearMusic" class="btn btn-primary" title="Limpiar">
             Limpiar <span class="fas fa-eraser"></span>
           </button>
         </div>
       </div>
-
-      <div class="row" id="moviesSeriresBody">
+      <div class="col-md-12" id="musicNotFound" style="display:none">
+        <div class="wrapper">
+            <div id="musicInfo">
+                <h1>Artista no encontrado</h1>
+            </div>
+        </div>
+    </div>
+      <div class="row" id="musicBody">
         <div class="col-md-12">
           <div class="wrapper">
-            <div id="MultimediaInfo">
-              <table class="table" title="Información de Peliculas y series">
+            <div id="musicInfo">
+              <table class="table" title="Información de Música">
                 <thead>
                   <tr>
                     <th>Titulo</th>
@@ -66,7 +73,7 @@
                     <th>Opción</th>
                   </tr>
                 </thead>
-                <tbody id="multimBodyTable"></tbody>
+                <tbody id="musicBodyTable"></tbody>
               </table>
             </div>
           </div>
@@ -86,7 +93,7 @@
     ></script>
     <script type="text/javascript" src="js/b-datepicker.min.js"></script>
     <script type="text/javascript " src="js/db.js "></script>
-    <script type="text/javascript " src="js/multimedia/bscUtils.js "></script>
+    <script type="text/javascript " src="js/music/bscUtils.js "></script>
   </body>
 </html>
 
@@ -99,30 +106,53 @@
            $("#navContainer").html(data);
        }
    });
-   //Variables
-   let query = window.location.search.substring(1),
-       photos = multimedia.photos,
-       director = artist.directors,
-       movieSerie = multimedia.movies.concat(multimedia.series),
-       actorsMovieSerie = artist.actors;
+  //Variables
+  let query = window.location.search.substring(1),
+      photos = multimedia.photos,
+      music = multimedia.music,
+      musicianAndGroups = artist.musician.concat(artist.musicalGroups),
+      musicalGender = _.uniq(_.map(music, "genero"));
 
    $("#play").click(function () {
        funcs.appendPlayer();
    });
 
-   $("#searchMultimedia").click(function () {
-        $("#moviesSeriresBody").css('visibility', 'visible');
-        funcs.searchMultimedia();
+   $("#searchMusic").click(function () {
+        $("#musicBody").css('visibility', 'visible');
+        funcs.searchMusic();
    });
 
-   $("#clearMultimedia").click(function () {
+   $("#clearMusic").click(function () {
         funcs.clearForm();
-        $("#moviesSeriresBody").css('visibility', 'hidden');
+        $("#musicBody").css('visibility', 'hidden');
    });
 
 $(document).ready(function () {
-    $("#moviesSeriresSearcher").css('visibility', 'visible');
-    $("#moviesSeriresBody").css('visibility', 'hidden');
-    funcs.initMultimedia(movieSerie);
+    $("#musicSearcher").css('visibility', 'visible');
+    $("#musicBody").css('visibility', 'hidden');
+    funcs.initMusic(music);
+    /*var qs = funcs.parse_query_string(query);
+    if (qs != null && !_.isUndefined(qs.multimedia)) {
+        $("#musicSearcher").css('visibility', 'visible');
+        $("#musicBody").css('visibility', 'visible');
+        $("#return").css('visibility', 'visible');
+        $("#multimedia").val(qs.multimedia);
+        funcs.searchMultimedia();
+        if(!_.isUndefined(qs.from)){
+            let goTo = "";
+            switch (qs.from) {
+                case "index":
+                    goTo="Volver a Home";
+                    break;
+                default:
+                    goTo="Volver a Buscador";
+                    break;
+            }
+            $("#return-icon").text(goTo);
+            $("#return-icon").attr("href", "./"+qs.from+".html");
+        }else{
+            $("#return-icon").attr("href", "./bscMusic.html");
+        }
+    }*/
 });
 </script>
