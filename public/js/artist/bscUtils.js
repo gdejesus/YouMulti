@@ -2,7 +2,6 @@ const funcs = {
     getArtist: function (artistSelected, actors, musician, musicalGroups) {
         let elements = actors.concat(musician).concat(musicalGroups);
         if(!_.isEmpty(artistSelected)){
-            debugger;
             elements = _.filter(elements, function (a) {
                 return a.name.toLowerCase().includes(artistSelected.toLowerCase());
             });
