@@ -28,6 +28,9 @@ const generalFuncs = {
         if(!_.isEmpty(qs.music) && !_.isUndefined(qs.music)){
             urlRedirect+= "&music="+qs.music;
         }
+        if(!_.isEmpty(qs.from)){
+            urlRedirect+="&from="+qs.from;
+        }
         if(!_.isEmpty(qs.prevFrom)){
             urlRedirect+="&prevFrom="+qs.prevFrom;
         }
