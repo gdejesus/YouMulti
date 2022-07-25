@@ -26,12 +26,10 @@ const funcs = {
         funcs.clearContent();
         let artistSelected = $("#artist").val();
         let elements = funcs.getArtist(artistSelected, actors, musician, musicalGroups);
-        if (elements == null) {
-            $("#artistNotFound").css('display', 'block');
-            $("#artistDetail").css('display', 'none');
-            $("#moreInfo").css('display', 'none');
-            return;
-        }
+        $("#artistNotFound").css('display',!elements.length? 'block':'none');
+        $("#artistBody").css('visibility',!elements.length? 'hidden':'visible');
+        if (!elements.length) return;
+
         this.initArtist(elements);
     },
     clearContent: function () {
@@ -39,6 +37,7 @@ const funcs = {
     },
     clearForm:function(){
         $("#artist").val("");
+        $("#artistNotFound").css('display','none');
     }
     
 }

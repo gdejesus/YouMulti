@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>YouMulti - Nosotros</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css" />
+    <link rel="stylesheet" href="style/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="style/jquery-ui.min.css" />
+
+    <link rel="stylesheet" href="style/custom.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script
+        type="text/javascript"
+        src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"
+      ></script>
+      <script
+        type="text/javascript"
+        src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"
+      ></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div id="navContainer"></div>
+    <div class="container tc">
+      <h1 class="tc" id="multimediaTitle"></h1>
+      <div id="return">
+        <a class="btn btn-primary" id="return-icon" title="Volver">
+          Volver a Artista</a
+        >
+      </div>
+      <div class="col-md-5" style="margin: auto; float: inherit">
+        <div>
+          <div class="card">
+            <div class="wrapper">
+              <div id="MultimediaInfo">
+                <table class="table" title="Multimedia por artista">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Titulo</th>
+                      <th>Fecha estreno</th>
+                      <th>Reproducir</th>
+                    </tr>
+                  </thead>
+                  <tbody id="multimediaBodyTable"></tbody>
+                </table>
+              </div>
+              <div
+                class="modal fade"
+                id="multimVideo"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="video-view">
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-dismiss="modal"
+                        >
+                          Cerrar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- /.container -->
+
+    <script type="text/javascript " src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript " src="js/jquery-ui.min.js "></script>
+    <script type="text/javascript " src="js/bootstrap.min.js "></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.1/underscore-min.js"
+      integrity="sha512-ZuOjyqq409+q6uc49UiBF3fTeyRyP8Qs0Jf/7FxH5LfhqBMzrR5cwbpDA4BgzSo884w6q/+oNdIeHenOqhISGw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script type="text/javascript " src="js/db.js "></script>
+    <script type="text/javascript " src="js/utils.js "></script>
+  </body>
+</html>
+<script type="text/javascript ">
+  let query = window.location.search.substring(1),
+   qs = generalFuncs.parse_query_string(query),
+   artists = artist.actors.concat(artist.musician).concat(artist.musicalGroups),
+   photos = multimedia.photos,
+   url = "./includes/nav.html";
+  $.ajax({
+      crossOrigin: true,
+      url: url,
+      success: function (data) {
+          $("#navContainer").html(data);
+      }
+  });
+
+  //Get photos by artist
+  $("#multimediaTitle").text("Multimedia relacionado a "+qs.artist);
+  let artistSelected = generalFuncs.getArtist(qs.artist);
+  generalFuncs.setMultimedia(artistSelected);
+  generalFuncs.setRedirect();
+</script>

@@ -47,6 +47,9 @@ const funcs = {
         funcs.appendyTube(funcs.getMultimedia(multimediaSelected))
     },
     searchMusic: function (music,prevFrom) { //,availableArtist) {
+        if(_.isUndefined(prevFrom)){
+            prevFrom = "";
+        }
         funcs.clearContent();
         let elements = [];
         let multimediaTitle = $("#multimediaTitle").val();

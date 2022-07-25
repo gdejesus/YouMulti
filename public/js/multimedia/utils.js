@@ -65,6 +65,9 @@ const funcs = {
         funcs.appendyTube(funcs.getMultimedia(filter, "actors"))
     },
     searchMultimedia: function (prevFrom) { 
+        if(_.isUndefined(prevFrom)){
+            prevFrom = "";
+        }
         funcs.clearContent();
         let elements = [];
         let element = null;

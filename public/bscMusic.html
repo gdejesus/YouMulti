@@ -57,7 +57,7 @@
       <div class="col-md-12" id="musicNotFound" style="display:none">
         <div class="wrapper">
             <div id="musicInfo">
-                <h1>Artista no encontrado</h1>
+                <h1>Musica no encontrada</h1>
             </div>
         </div>
     </div>
@@ -131,28 +131,5 @@ $(document).ready(function () {
     $("#musicSearcher").css('visibility', 'visible');
     $("#musicBody").css('visibility', 'hidden');
     funcs.initMusic(music);
-    /*var qs = funcs.parse_query_string(query);
-    if (qs != null && !_.isUndefined(qs.multimedia)) {
-        $("#musicSearcher").css('visibility', 'visible');
-        $("#musicBody").css('visibility', 'visible');
-        $("#return").css('visibility', 'visible');
-        $("#multimedia").val(qs.multimedia);
-        funcs.searchMultimedia();
-        if(!_.isUndefined(qs.from)){
-            let goTo = "";
-            switch (qs.from) {
-                case "index":
-                    goTo="Volver a Home";
-                    break;
-                default:
-                    goTo="Volver a Buscador";
-                    break;
-            }
-            $("#return-icon").text(goTo);
-            $("#return-icon").attr("href", "./"+qs.from+".html");
-        }else{
-            $("#return-icon").attr("href", "./bscMusic.html");
-        }
-    }*/
 });
 </script>

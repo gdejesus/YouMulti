@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>YouMulti - Nosotros</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css" />
+    <link rel="stylesheet" href="style/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="style/jquery-ui.min.css" />
+
+    <link rel="stylesheet" href="style/custom.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+    <div id="navContainer"></div>
+    <div class="container tc">
+        <h1 class="tc" id="socialTitle">Redes Sociales</h1>
+        <div id="return">
+          <a class="btn btn-primary" id="return-icon" title="Volver">Volver a Artista</a>
+      </div>
+        <div class="col-md-5" style="margin: auto;float: inherit;">
+
+            <div>
+                <div class="card">
+                  <div class="wrapper">
+                      <div class="modal-body">
+                        <table
+                          class="table table-bordered table-striped" style="color:white"
+                          title="Redes sociales por actor"
+                        >
+                          <thead>
+                            <tr>                            
+                              <th>Link</th>
+                            </tr>
+                          </thead>
+                          <tbody id="bodyTable">
+                            <tr>                              
+                              <td>
+                                <a
+                                  class="btn btn-primary"
+                                  href="https://www.facebook.com/"
+                                  title="Facebook"
+                                  >Facebook<i class="fab fa-facebook"></i>
+                                </a>
+                              </td>
+                            </tr>
+                            <tr>                              
+                              <td>
+                                <a
+                                  class="btn btn-primary"
+                                  href="https://www.twitter.com/"
+                                  title="Twitter"
+                                  >Twitter<i class="fab fa-twitter"></i>
+                                </a>
+                              </td>
+                            </tr>
+                            <tr>                              
+                              <td>
+                                <a
+                                  class="btn btn-primary"
+                                  href="https://www.instagram.com/"
+                                  title="Instagram"
+                                  >Instagram<i class="fab fa-instagram"></i>
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        
+                      </div>
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.container -->
+
+    <script type="text/javascript " src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript " src="js/jquery-ui.min.js "></script>
+    <script type="text/javascript " src="js/bootstrap.min.js "></script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.1/underscore-min.js"
+    integrity="sha512-ZuOjyqq409+q6uc49UiBF3fTeyRyP8Qs0Jf/7FxH5LfhqBMzrR5cwbpDA4BgzSo884w6q/+oNdIeHenOqhISGw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+    <script type="text/javascript " src="js/utils.js "></script>
+</body>
+
+</html>
+<script type="text/javascript ">
+    let query = window.location.search.substring(1);
+    var qs = generalFuncs.parse_query_string(query);
+    let url = "./includes/nav.html"
+    $.ajax({
+        crossOrigin: true,
+        url: url,
+        success: function (data) {
+            $("#navContainer").html(data);
+        }
+    });
+    $("#socialTitle").text("Redes Sociales de "+qs.artist);
+    generalFuncs.setRedirect();
+</script>

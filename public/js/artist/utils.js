@@ -20,6 +20,20 @@ const funcs = {
         }
         return query_string;
     },
+    redir:function(where,qs){
+            let urlRedirect = "./"+where+".html?artist="+qs.artist;
+            if(!_.isEmpty(qs.multimedia) && !_.isUndefined(qs.multimedia)){
+                urlRedirect += "&multimedia="+qs.multimedia;
+            }
+            if(!_.isEmpty(qs.music) && !_.isUndefined(qs.music)){
+                urlRedirect+= "&music="+qs.music;
+            }
+            if(!_.isEmpty(qs.prevFrom)){
+                urlRedirect+="&prevFrom="+qs.prevFrom;
+            }
+            document.location.href=urlRedirect;
+            return urlRedirect
+    },
     getArtist: function (artistSelected, actors, musician, musicalGroups) {
         let element = {};
         element = _.filter(actors, function (a) {
@@ -80,11 +94,11 @@ const funcs = {
         $("#birthArtist").text(element.fechaNacimiento);
 
         //Get photos by artist
-        let artistPhotos = _.filter(photos, function (ap) {
+        /*let artistPhotos = _.filter(photos, function (ap) {
             return element.id == ap.artist && ap.tipoArtista == element.tipoArtista;
         });
         //Adding photos to slice
-        _.each(artistPhotos, function (ap, i) {
+        /*_.each(artistPhotos, function (ap, i) {
             let li = $("<li />", {
                 'data-target': "#myCarousel",
                 'data-slide-to': i,
@@ -101,9 +115,9 @@ const funcs = {
                 });
             img.appendTo(div);
             div.appendTo($("#carouselPhotos"));
-        });
+        });*/
         //Adding Multimedia       
-        _.each(element.multimedia, function (multi) {
+        /*_.each(element.multimedia, function (multi) {
             let md = _.filter(multimedia.movies.concat(multimedia.series), function (m) {
                 return multi == m.id && m.tipoArtista == element.tipoArtista;
             })[0];
@@ -119,8 +133,8 @@ const funcs = {
             row += '<td><button type="button" name="popup" id="' + md.id + '--'+element.tipoArtista+'" class="btn btn-primary" title="Reproducir" data-toggle="modal" data-target="#multimVideo" title="Multimedia">Reproducir <i class="fas fa-play"></i> </button></td>'
             row += "</tr>";
             $("#multimediaBodyTable").append(row);
-        });
-        $("[name=popup]").click(function () {
+        });*/
+        /*$("[name=popup]").click(function () {
             var $this = $(this);
             let obj = $this.context.id.split("--");
             let multi = _.filter(multimedia.movies.concat(multimedia.series), function (m) {
@@ -130,7 +144,7 @@ const funcs = {
                 return;
             }
             funcs.appendyTube(multi);
-        });
+        });*/
     },
     clearContent: function () {
         $("#socialArtist").text("");
@@ -145,14 +159,5 @@ const funcs = {
         $("#moreInfo").css('display', 'none');
         funcs.clearContent();
     },
-    appendyTube: function (multi) {
-        let src = "https://www.youtube.com/embed/" + multi.ytubeId,
-            $iframe = $("<iframe>").attr("src", src).css({
-                "width": 400,
-                "height": 300
-            }),
-            $title = $("<h1>").text(multi.titulo);
-        $(".video-view").html($title).append($iframe);
-        $iframe.wrap("<div class='class-video'>");
-    }
+
 }

@@ -200,7 +200,7 @@
 
         if (qs != null && !_.isUndefined(qs.multimedia)) {
             $("#return").css('visibility', 'visible');
-            if(!_.isUndefined(qs.from)){
+            if(!_.isUndefined(qs.from) && !_.isEmpty(qs.from)){
                 let goTo = "";
                 switch (qs.from) {
                     case "index":

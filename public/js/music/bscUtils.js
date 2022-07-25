@@ -68,12 +68,10 @@ const funcs = {
                 });
             }
         }
-        if (elements == null) {
-            $("#musicNotFound").css('display', 'block');
-            $("#musicDetail").css('display', 'none');
-            $("#moreInfo").css('display', 'none');
-            return;
-        }
+        $("#musicNotFound").css('display',!elements.length? 'block':'none');
+        $("#musicBody").css('visibility',!elements.length? 'hidden':'visible');
+        if (!elements.length) return;
+        
         this.initMusic(elements);
     },
     clearContent: function () {
@@ -83,6 +81,7 @@ const funcs = {
         $("#music").val("");
         $("#musicGender").val("");
         $('#musicArtist').val("");
+        $("#musicNotFound").css('display','none');
     }
     
 }

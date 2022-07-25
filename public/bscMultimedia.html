@@ -53,7 +53,13 @@
           </button>
         </div>
       </div>
-
+      <div class="col-md-12" id="multimediaNotFound" style="display:none">
+        <div class="wrapper">
+            <div id="multimediatInfo">
+                <h1>Pelicula o serie no encontrada</h1>
+            </div>
+        </div>
+    </div>
       <div class="row" id="moviesSeriresBody">
         <div class="col-md-12">
           <div class="wrapper">
@@ -123,6 +129,6 @@
 $(document).ready(function () {
     $("#moviesSeriresSearcher").css('visibility', 'visible');
     $("#moviesSeriresBody").css('visibility', 'hidden');
-    funcs.initMultimedia(movieSerie);
+    //funcs.initMultimedia(movieSerie);
 });
 </script>

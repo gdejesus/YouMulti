@@ -51,35 +51,45 @@ const funcs = {
         });
     },
     searchMultimedia: function () { 
-        let elements = [],
+        let elements =  multimedia.movies.concat(multimedia.series),
          artistSelected = $("#artist").val(),
          multimediaSelected = $("#multimedia").val(),
          date = $('#datepicker').datepicker("getDate"),
          shortDate = $("#datepicker").val();
         
-        let filter = (date != null && date != "" && date != new Date() ? shortDate : multimediaSelected != null && multimediaSelected != "" ? multimediaSelected :  "").toLowerCase();
+        let filter = (date != null && date != "" && date != new Date() ? shortDate : "").toLowerCase();
         if(!_.isEmpty(filter)){
+            this.initMultimedia(elements);
             funcs.filterTable(filter);
         }else if (artistSelected != null && artistSelected != "") {
             funcs.clearContent();
-            let art = _.filter(artist.actors, function (a) {
+            let artists = _.filter(artist.actors, function (a) {
                 return a.name.toLowerCase().includes(artistSelected.toLowerCase());
             });
-            if (art.length) {
-                _.each(art[0].multimedia, function (mult) {
-                    elements.push(_.filter(multimedia.movies.concat(multimedia.series), function (m) {
-                        return m.id == mult;
-                    })[0]);
+            if(!artists.length){
+                elements =[];
+            }else{
+                let multimedia = [];
+                _.each(artists, (art)=>{
+                    _.each(art.multimedia, function (mult) {
+                        multimedia.push(_.filter(elements, function (m) {
+                            return m.id == mult;
+                        })[0]);
+                    });
                 });
-            }
-            if (elements == null) {
-                return;
-            }
-            this.initMultimedia(elements);
-        }else{
-            let movieSerie = multimedia.movies.concat(multimedia.series);
-            this.initMultimedia(movieSerie);
+                elements = _.uniq(multimedia, movieSerie => movieSerie.id);
+            }            
+        }else if (multimediaSelected != null && multimediaSelected != "") {
+            funcs.clearContent();
+            elements =_.filter(elements, function (m) {
+                return m.titulo.toLowerCase().includes(multimediaSelected.toLowerCase());
+            });
         }
+        $("#multimediaNotFound").css('display',!elements.length? 'block':'none');
+        $("#moviesSeriresBody").css('visibility',!elements.length? 'hidden':'visible');
+        if (!elements.length) return;
+
+        this.initMultimedia(elements);
         $("[name=popup]").click(function () {
             var $this = $(this);
             let obj = $this.context.id.split("--");
@@ -96,13 +106,14 @@ const funcs = {
         $("#ArtistBodyTable").html("");
         $("#multimBodyTable").html("");
         $("#DirectorBodyTable").html("");
-        funcs.initMultimedia();
+        //funcs.initMultimedia();
     },
     clearForm:function(){
         $("#multimedia").val("");
         $("#artist").val("");
         $('#datepicker').val("");
         $("#moreInfo").css('visibility', 'hidden');
+        $("#multimediaNotFound").css('display','none');
     }
     
 }
